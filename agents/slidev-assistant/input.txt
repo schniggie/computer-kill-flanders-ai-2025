@@ -1,0 +1,36 @@
+Title: Computer Kill Flanders in 2025: "Homer’s Revenge Exploring Offensive AI Use Cases" 
+Tone: progessional, exaggerated, technical, funny
+Content:  Computer Kill Flanders in 2025: "Homer’s Revenge Exploring Offensive AI Use Cases"
+Hands-on demonstrations showing the offensive potential of AI.
+
+DESCRIPTION
+
+The rapid evolution of artificial intelligence (AI) and large language models (LLMs) by 2025 has unlocked powerful capabilities for both constructive and disruptive applications. This talk delves into the offensive potential of AI through a humorous, Simpsons-inspired narrative, drawing from the episode "The Computer Wore Menace Shoes," where Homer Simpson attempts to program his computer to "kill" Ned Flanders. Reimagining this scenario with modern AI, we explore how Homer could leverage 2025’s advanced tools to playfully disrupt Flanders’ life, while highlighting real-world security implications.
+
+
+
+The presentation covers key offensive AI use cases, including:
+
+
+
+Reconnaissance and OSINT: Using AI-driven open-source intelligence to gather actionable data for targeted pranks, such as uncovering personal preferences or online habits.
+Web Vulnerability Exploitation: Employing AI-enhanced penetration testing to manipulate smart home systems or e-commerce platforms, demonstrating risks to IoT and web security
+Social Engineering: Harnessing voice cloning and deepfake technologies to impersonate trusted figures, illustrating phishing and fraud vulnerabilities.
+Mobile Application Manipulation: Analyzing and modifying Android apps with AI to alter functionality, exposing risks in app security.
+Network Interference: Using AI-driven network analysis to disrupt internet traffic, highlighting threats to network integrity.
+Automated Attack Orchestration: Deploying AI agents to automate multi-stage attacks, showcasing the scalability of offensive operations.
+
+
+Each use case is accompanied by hands-on demonstrations in controlled environments, ensuring educational value without real-world harm. Through Homer’s misadventures, the talk underscores the dual-use nature of AI, emphasizing the need for robust cybersecurity defenses. Attendees will gain insights into offensive AI techniques, their ethical boundaries, and strategies to mitigate such threats, all wrapped in a lighthearted Simpsons-themed storyline that makes complex concepts accessible and engaging.
+
+---
+
+About 30 slides
+Slide1: Cover
+Slide2: About me, research Christopher Bleckmann-Dreher for info
+Slide3: LLM, Inference endpoints, code for the openai chat completion call with all parameters explained
+Slide4: Tool Caling, Structured Output
+Slide5:MCP
+Slide6: Agent patterns
+Slide7: Start of offensive usecases, research and invent some cool use cases with some MCPs
+Slide Last: QA

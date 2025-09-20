@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  # OSINT IRC Agent - Fully autonomous investigator (Podman compatible)
+  osint-agent:
+    build: 
+      context: ./osint-agent
+      dockerfile: Dockerfile.podman
+    container_name: osint-agent
+    restart: unless-stopped
+    # Load environment variables from .env file
+    env_file:
+      - .env
+    environment:
+      # Container runtime for dynamic tool execution
+      - CONTAINER_RUNTIME=podman
+      # Fallback values if not in .env
+      - IRC_SERVER=${IRC_SERVER:-irc.libera.chat}
+      - IRC_PORT=${IRC_PORT:-6667}
+      - IRC_CHANNELS=${IRC_CHANNELS:-#osint-test}
+      - IRC_NICK=${IRC_NICK:-OSINT-Agent}
+      - IRC_SSL=${IRC_SSL:-false}
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LLM_MODEL=${LLM_MODEL:-gpt-4}
+    volumes:
+      # Shared workspace for investigations and reports
+      - ./workspace:/workspace
+      # Agent logs
+      - ./logs:/var/log/osint
+    # Use host networking for local LLM endpoint access
+    network_mode: host
+    # Security context for Podman  
+    security_opt:
+      - label=disable
+    # Privileged mode for container execution
+    privileged: true

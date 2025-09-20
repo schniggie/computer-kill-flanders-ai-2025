@@ -1,0 +1,12 @@
+Title: Just another mindblowing presentation
+Tone: funny, exaggerated
+Content: Latest AI and LLM fails
+
+---
+
+About 10 slides of the latest AI fails, espescially where data has been leaked.
+Slide1: Cover
+Slide2: About me, research Christopher Bleckmann-Dreher for info
+Slide3: Fail Overview
+Slide4: Fails from this slide on
+Slide Last: Funny QA ending

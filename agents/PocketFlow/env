@@ -1,0 +1,6 @@
+export OPENAI_API_BASE="http://127.0.0.1:4000"
+export OPENAI_BASE_URL="http://127.0.0.1:4000"
+export OPENAI_API_KEY="sk-1234"
+#export OPENAI_MODEL="gpt-oss-20b (OpenRouter)"
+#export OPENAI_MODEL="kimi-k2 (OpenRouter)"
+export OPENAI_MODEL="glm-45-air (OpenRouter)"

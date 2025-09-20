@@ -1,0 +1,27 @@
+Title: Advanced AI Security: 20-Slide Deep Dive
+Tone: technical, comprehensive
+Content: Deep technical analysis of AI security vulnerabilities and attack vectors
+
+---
+
+About 20 slides covering comprehensive AI security topics with detailed technical content.
+Slide1: Cover - Introduction to AI Security
+Slide2: Executive Summary
+Slide3: AI Threat Landscape Overview
+Slide4: LLM Vulnerabilities - Injection Attacks
+Slide5: LLM Vulnerabilities - Training Data Poisoning
+Slide6: LLM Vulnerabilities - Model Extraction
+Slide7: Agent System Vulnerabilities
+Slide8: Multi-Modal AI Risks
+Slide9: Adversarial Examples in Deep Learning
+Slide10: Privacy Attacks on AI Models
+Slide11: Supply Chain Attacks
+Slide12: Real-World Case Studies - Part 1
+Slide13: Real-World Case Studies - Part 2
+Slide14: Defense Strategies - Detection
+Slide15: Defense Strategies - Prevention
+Slide16: Defense Strategies - Response
+Slide17: Emerging Threats and Future Risks
+Slide18: Industry Best Practices
+Slide19: Research Directions
+Slide20: Q&A and Conclusion

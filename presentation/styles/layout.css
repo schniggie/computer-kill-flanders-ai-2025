@@ -1,0 +1,255 @@
+:root {
+  /* Dark Simpsons Hacker Theme Colors */
+  --slidev-theme-primary: #39ff14; /* Nuclear green */
+  --slidev-theme-secondary: #ffd90f; /* Simpson yellow */
+  --slidev-theme-accent: #ff073a; /* Danger red */
+  --slidev-theme-dark: #0a0a0a; /* Deep black */
+  --slidev-theme-dark-alt: #1a1a1a; /* Dark gray */
+  --slidev-theme-terminal: #0f0f0f; /* Terminal black */
+  
+  /* Override default Slidev colors */
+  --slidev-code-background: #0f0f0f;
+  --slidev-code-foreground: #39ff14;
+}
+
+/* Global dark theme */
+html.dark {
+  --slidev-theme-background: var(--slidev-theme-dark);
+  --slidev-theme-foreground: #e0e0e0;
+  color-scheme: dark;
+}
+
+/* Base layout styling */
+.slidev-layout {
+  @apply bg-gray-900 text-green-400;
+  background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+  font-family: 'Fira Code', 'Courier New', monospace;
+  position: relative;
+}
+
+/* Matrix-style background effect */
+.slidev-layout::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(57, 255, 20, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 217, 15, 0.03) 0%, transparent 50%),
+    linear-gradient(90deg, transparent 79px, rgba(57, 255, 20, 0.03) 81px, transparent 82px);
+  background-size: 100% 100%, 100% 100%, 82px 82px;
+  pointer-events: none;
+}
+
+.slidev-layout.cover,
+.slidev-layout.intro {
+  @apply h-full grid;
+  background: radial-gradient(ellipse at center, #1a1a1a 0%, #0a0a0a 100%);
+
+  h1 {
+    @apply text-6xl leading-20;
+    color: var(--slidev-theme-secondary);
+    text-shadow: 0 0 20px rgba(255, 217, 15, 0.5);
+    font-weight: bold;
+  }
+
+  h1 + p {
+    @apply -mt-2 opacity-70 mb-4;
+    color: var(--slidev-theme-primary);
+  }
+
+  p + h2,
+  ul + h2,
+  table + h2 {
+    @apply mt-10;
+    color: var(--slidev-theme-primary);
+  }
+}
+
+/* Typography enhancements */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--slidev-theme-secondary);
+  text-shadow: 0 0 10px rgba(255, 217, 15, 0.3);
+}
+
+h2 {
+  @apply border-l-4 pl-4;
+  border-color: var(--slidev-theme-primary);
+  background: linear-gradient(90deg, rgba(57, 255, 20, 0.1) 0%, transparent 100%);
+}
+
+/* Code blocks styling */
+pre, code {
+  background: var(--slidev-theme-terminal) !important;
+  color: var(--slidev-theme-primary) !important;
+  /* border: 1px solid rgba(57, 255, 20, 0.3); */
+  /* box-shadow: 0 0 10px rgba(57, 255, 20, 0.2); */
+}
+
+/* Terminal-style elements */
+.terminal-style {
+  background: #0f0f0f;
+  border: 2px solid var(--slidev-theme-primary);
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(57, 255, 20, 0.3),
+    inset 0 0 20px rgba(57, 255, 20, 0.1);
+  font-family: 'Fira Code', monospace;
+}
+
+/* Warning/Alert boxes */
+.nuclear-warning {
+  @apply p-4 mb-4 border-l-4 rounded-r;
+  background: linear-gradient(90deg, rgba(255, 7, 58, 0.1) 0%, rgba(255, 7, 58, 0.05) 100%);
+  border-color: var(--slidev-theme-accent);
+  color: #ff9999;
+  position: relative;
+}
+
+.nuclear-warning::before {
+  content: '⚠️';
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.2em;
+}
+
+/* Glitch effect for emphasis */
+.glitch {
+  animation: glitch 2s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+/* Terminal cursor blink */
+.cursor {
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+/* Enhanced code highlighting styles */
+.nuclear-code {
+  background: #0f0f0f !important;
+  border: 1px solid rgba(57, 255, 20, 0.4) !important;
+  border-radius: 8px;
+  box-shadow: 
+    0 0 20px rgba(57, 255, 20, 0.2),
+    inset 0 0 20px rgba(57, 255, 20, 0.05) !important;
+  position: relative;
+}
+
+.nuclear-code::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(transparent 50%, rgba(57, 255, 20, 0.02) 50%);
+  background-size: 100% 2px;
+  animation: code-scanlines 0.1s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes code-scanlines {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(2px); }
+}
+
+/* Nuclear-themed syntax highlighting using material-theme tokens */
+.nuclear-code .token.keyword,
+.nuclear-code .token.function,
+.nuclear-code .token.class-name {
+  color: #ffd90f !important;
+  text-shadow: 0 0 8px rgba(255, 217, 15, 0.6);
+  font-weight: bold;
+}
+
+.nuclear-code .token.boolean,
+.nuclear-code .token.null,
+.nuclear-code .token.undefined {
+  color: #ff073a !important;
+  text-shadow: 0 0 8px rgba(255, 7, 58, 0.6);
+  font-weight: bold;
+}
+
+.nuclear-code .token.string,
+.nuclear-code .token.template-string {
+  color: #39ff14 !important;
+  text-shadow: 0 0 8px rgba(57, 255, 20, 0.4);
+}
+
+.nuclear-code .token.number {
+  color: #00bfff !important;
+  text-shadow: 0 0 8px rgba(0, 191, 255, 0.6);
+}
+
+.nuclear-code .token.comment,
+.nuclear-code .token.prolog {
+  color: #666 !important;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Enhanced nuclear code styling that works with Shiki themes */
+.nuclear-code .line {
+  color: #e0e0e0;
+}
+
+.nuclear-code .line .token.operator {
+  color: #39ff14;
+}
+
+.nuclear-code .line .token.punctuation {
+  color: #888;
+}
+
+.nuclear-code .line .token.variable {
+  color: #e0e0e0;
+}
+
+/* Special Simpson's/Nuclear themed classes */
+.d-oh {
+  color: #ffd90f !important;
+  text-shadow: 0 0 15px rgba(255, 217, 15, 0.8);
+  font-weight: bold;
+  animation: pulse 2s infinite;
+}
+
+.radioactive {
+  color: #39ff14 !important;
+  text-shadow: 
+    0 0 10px rgba(57, 255, 20, 0.8),
+    0 0 20px rgba(57, 255, 20, 0.6),
+    0 0 30px rgba(57, 255, 20, 0.4);
+  animation: radioactive-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes radioactive-glow {
+  0% { 
+    text-shadow: 
+      0 0 10px rgba(57, 255, 20, 0.8),
+      0 0 20px rgba(57, 255, 20, 0.6),
+      0 0 30px rgba(57, 255, 20, 0.4);
+  }
+  100% { 
+    text-shadow: 
+      0 0 20px rgba(57, 255, 20, 1),
+      0 0 30px rgba(57, 255, 20, 0.8),
+      0 0 40px rgba(57, 255, 20, 0.6);
+  }
+}

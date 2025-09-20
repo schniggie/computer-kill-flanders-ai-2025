@@ -1,0 +1,24 @@
+<head>
+
+</head>
+<!-- PocketFlow Chatbot - Start -->
+<body>
+<script>
+(function() {
+    var script = document.createElement("script");
+    script.src = "https://chatbot.dreher.in/embed/chatbot.js";
+    script.onload = function() {
+        initializeChatbot({
+            extra_urls: ["https://www.heise.de/security"],
+            prefixes: [],
+            chatbotName: 'Hans Kanns',
+            wsUrl: 'wss://chatbot.dreher.in/api/ws/chat',
+            instruction: '',
+            isOpen: false
+        });
+    };
+    document.head.appendChild(script);
+})();
+</script>
+</body>
+<!-- PocketFlow Chatbot - End -->

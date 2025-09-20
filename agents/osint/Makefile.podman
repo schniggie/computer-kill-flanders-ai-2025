@@ -1,0 +1,128 @@
+# OSINT IRC Agent - Podman Development Makefile
+
+.PHONY: help build up down logs shell test clean
+
+# Default target
+help:
+	@echo "🔍 OSINT IRC Agent - Podman Commands:"
+	@echo ""
+	@echo "Setup:"
+	@echo "  setup     - Initial setup (copy .env, create directories)"
+	@echo "  build     - Build all Podman images"
+	@echo "  up        - Start the entire stack with Podman"
+	@echo "  down      - Stop the entire stack"
+	@echo ""
+	@echo "Development:"
+	@echo "  logs      - View agent logs"
+	@echo "  shell     - Shell access to agent container"
+	@echo "  test      - Test agent functionality"
+	@echo "  rebuild   - Rebuild and restart agent"
+	@echo ""
+	@echo "Maintenance:"
+	@echo "  clean     - Clean up containers and images"
+	@echo "  reset     - Complete reset (removes all data)"
+
+# Initial setup
+setup:
+	@echo "🚀 Setting up OSINT IRC Agent (Podman)..."
+	@if [ ! -f .env ]; then \
+		cp .env.example .env; \
+		echo "📝 Created .env file - please edit with your settings"; \
+	else \
+		echo "✅ .env file already exists"; \
+	fi
+	@mkdir -p workspace logs
+	@echo "📁 Created workspace and logs directories"
+	@echo ""
+	@echo "⚠️  Next steps:"
+	@echo "  1. Edit .env file with your IRC and API key settings"
+	@echo "  2. Run 'make build' to build containers"
+	@echo "  3. Run 'make up' to start the agent"
+
+# Build all images
+build:
+	@echo "🔨 Building Podman images..."
+	podman-compose -f docker-compose.podman.yml build
+
+# Start the stack
+up:
+	@echo "🚀 Starting OSINT IRC Agent stack (Podman)..."
+	podman-compose -f docker-compose.podman.yml up -d
+	@echo "✅ Stack started. Use 'make logs' to monitor."
+
+# Stop the stack  
+down:
+	@echo "🛑 Stopping OSINT IRC Agent stack..."
+	podman-compose -f docker-compose.podman.yml down
+
+# View logs
+logs:
+	@echo "📋 Viewing agent logs (Ctrl+C to exit)..."
+	podman-compose -f docker-compose.podman.yml logs -f osint-agent
+
+# Shell access to agent
+shell:
+	@echo "🐚 Opening shell in agent container..."
+	podman-compose -f docker-compose.podman.yml exec osint-agent bash
+
+# Test agent functionality
+test:
+	@echo "🧪 Testing agent functionality..."
+	@echo "Testing Podman availability..."
+	podman version
+	@echo "Testing Python imports..."
+	podman-compose -f docker-compose.podman.yml exec osint-agent python -c "from src.agent import OSINTAgent; print('✅ Agent imports working')"
+	@echo "Testing tool availability..."
+	podman-compose -f docker-compose.podman.yml exec osint-agent which nmap
+	podman-compose -f docker-compose.podman.yml exec osint-agent which subfinder
+	@echo "Testing Maigret access..."
+	podman-compose -f docker-compose.podman.yml exec osint-agent podman run --rm soxoj/maigret:latest --help | head -5
+
+# Rebuild agent only
+rebuild:
+	@echo "🔄 Rebuilding agent container..."
+	podman-compose -f docker-compose.podman.yml build osint-agent
+	podman-compose -f docker-compose.podman.yml up -d osint-agent
+	@echo "✅ Agent rebuilt and restarted"
+
+# Clean up containers
+clean:
+	@echo "🧹 Cleaning up containers and images..."
+	podman-compose -f docker-compose.podman.yml down
+	podman system prune -f
+	@echo "✅ Cleanup completed"
+
+# Complete reset
+reset: clean
+	@echo "💣 Performing complete reset..."
+	podman-compose -f docker-compose.podman.yml down -v
+	podman volume prune -f
+	rm -rf workspace/* logs/*
+	@echo "✅ Complete reset performed"
+
+# Monitor all services
+monitor:
+	@echo "📊 Monitoring all services..."
+	watch podman-compose -f docker-compose.podman.yml ps
+
+# Quick status check
+status:
+	@echo "📈 Current status:"
+	@podman-compose -f docker-compose.podman.yml ps
+	@echo ""
+	@echo "📊 Resource usage:"
+	@podman stats --no-stream
+
+# Update Maigret image
+update-maigret:
+	@echo "⬆️  Updating Maigret Podman image..."
+	podman pull soxoj/maigret:latest
+	@echo "✅ Maigret image updated"
+
+# Pull all required images
+pull:
+	@echo "📥 Pulling required images..."
+	podman pull soxoj/maigret:latest
+	podman pull postgres:15-alpine
+	podman pull redis:7-alpine
+	@echo "✅ Images pulled"

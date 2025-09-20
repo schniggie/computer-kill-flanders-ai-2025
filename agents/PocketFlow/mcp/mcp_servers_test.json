@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "test-local": {
+      "type": "stdio",
+      "command": "python",
+      "args": ["-c", "import sys; import json; import time; print(json.dumps({'jsonrpc': '2.0', 'method': 'initialize', 'params': {}})); sys.stdout.flush(); time.sleep(60)"]
+    }
+  }
+}
