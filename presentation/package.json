@@ -10,11 +10,11 @@
     "node": ">=18.0.0"
   },
   "scripts": {
-    "build": "slidev build example.md",
+    "build": "slidev build slides.md",
     "demo": "slidev demo.md --open",
     "prod": "slidev slides.md --open",
-    "export": "slidev export example.md",
-    "screenshot": "slidev export example.md --format png"
+    "export": "slidev export slides.md",
+    "screenshot": "slidev export slides.md --format png"
   },
   "dependencies": {
     "@slidev/types": "^52.1.0"
