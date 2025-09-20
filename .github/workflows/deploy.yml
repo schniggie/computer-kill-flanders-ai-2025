@@ -41,8 +41,8 @@ jobs:
       # Stage the site so that the deck lives under /presentation/ on Pages
       - name: Prepare Pages artifact
         run: |
-          mkdir -p gh-pages/presentation
-          cp -r presentation/dist/* gh-pages/presentation/
+          mkdir -p gh-pages/
+          cp -r presentation/dist/* gh-pages/
 
       - name: Setup Pages
         uses: actions/configure-pages@v4
