@@ -1,0 +1,65 @@
+name: Deploy pages
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Setup @antfu/ni
+        run: npm i -g @antfu/ni
+
+      # Install deps for the Slidev project inside the subfolder
+      - name: Install dependencies
+        working-directory: presentation
+        run: nci
+
+      # Build with the correct base so it works at /<repo>/presentation/
+      - name: Build
+        working-directory: presentation
+        run: nr build --base "/${{ github.event.repository.name }}/presentation/"
+
+      # Stage the site so that the deck lives under /presentation/ on Pages
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p gh-pages/presentation
+          cp -r presentation/dist/* gh-pages/presentation/
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: gh-pages
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: build
+    runs-on: ubuntu-latest
+    name: Deploy
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
